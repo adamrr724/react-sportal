@@ -11,7 +11,22 @@ export default function Signup() {
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
   const history = useHistory()
+  const { signInWithGoogle } = useAuth()
 
+  async function handleGoogleSubmit(e) {
+    e.preventDefault()
+
+    try {
+        setError("")
+        setLoading(true)
+        await signInWithGoogle()
+        history.push("/")
+      } catch {
+        setError("Failed to create an account using Google")
+      }
+  }
+  
+  
   async function handleSubmit(e) {
     e.preventDefault()
 
@@ -52,6 +67,11 @@ export default function Signup() {
             </Form.Group>
             <Button disabled={loading} className="w-100" type="submit">
               Sign Up
+            </Button>
+          </Form>
+          <Form onSubmit={handleGoogleSubmit}>
+            <Button variant="secondary" disabled={loading} className="w-100 mt-2" type="submit">
+              Sign In with Google
             </Button>
           </Form>
         </Card.Body>
