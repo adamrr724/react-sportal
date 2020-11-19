@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
  
-const Events = ({ text }) => <div>{text}</div>;
- 
 class SimpleMap extends Component {
   static defaultProps = {
     center: {
-      lat: 59.95,
-      lng: 30.33
+      lat: 45.5051,
+      lng: -122.6750
     },
     zoom: 11
   };
@@ -15,17 +13,12 @@ class SimpleMap extends Component {
   render() {
     return (
       // Important! Always set the container height explicitly
-      <div style={{ height: '100vh', width: '100%' }}>
+      <div style={{ height: '100vh', width: '100%', display: "block" }}>
         <GoogleMapReact
           bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAP_API_KEY }}
           defaultCenter={this.props.center}
           defaultZoom={this.props.zoom}
         >
-          <Events
-            lat={59.955413}
-            lng={30.337844}
-            text="My Marker"
-          />
         </GoogleMapReact>
       </div>
     );
