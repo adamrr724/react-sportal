@@ -1,10 +1,12 @@
 import React from 'react'
 import { Nav, Navbar } from "react-bootstrap"
 import logo from "../styles/images/sportal-logo.png"
-  
-class Menu extends React.Component {
-    render() {
-      return (
+import { useAuth } from "../contexts/AuthContext"
+
+export default function Menu() {
+  const { currentUser } = useAuth()
+
+  return (
       <Navbar bg="light" variant="light">
           <Navbar.Brand href="/">
             <img
@@ -17,13 +19,11 @@ class Menu extends React.Component {
           </Navbar.Brand>
         <Nav className="ml-auto">
           <Nav.Link href="/events">Events</Nav.Link>
-          <Nav.Link href="/dashboard">Dashboard</Nav.Link>
-          <Nav.Link href="/login">Login</Nav.Link>
+          {currentUser && <Nav.Link href="/create">Create</Nav.Link>}
+          {!currentUser && <Nav.Link href="/login">Login</Nav.Link>}
+          {currentUser && <Nav.Link href="/dashboard">Dashboard</Nav.Link>}
         </Nav>
       </Navbar>
 
-      );
-    }
-  }
- 
-  export default Menu;
+  );
+}

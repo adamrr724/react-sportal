@@ -12,14 +12,15 @@ import UpdateProfile from "./UpdateProfile"
 import Events from "./Events"
 import Home from "./Home"
 import Menu from "./Menu"
+import Create from "./Create"
 
 function App() {
   return (
     <Container>
-      <Menu></Menu>
       <div className="w-100">
         <Router>
           <AuthProvider>
+            <Menu></Menu>
             <Switch>
               <PrivateRoute path="/dashboard" component={Dashboard} />
               <PrivateRoute path="/update-profile" component={UpdateProfile} />
@@ -27,6 +28,7 @@ function App() {
               <Route path="/login" component={Login} />
               <Route path="/forgot-password" component={ForgotPassword} />
               <Route path="/events" component={Events} />
+              <Route path="/create" component={Create} />
               <Route path="/" component={Home} />
             </Switch>
           </AuthProvider>
