@@ -6,15 +6,13 @@ import Firebase from "firebase";
 
 const db = Firebase.database().ref("/events");
 
-export default function Login() {
+export default function Create() {
   const nameRef = useRef()
   const typeRef = useRef()
   const sportRef = useRef()
   const paidRef = useRef()
   const { currentUser } = useAuth()
   const history = useHistory()
-
-  console.log(currentUser);
 
   async function handleSubmit(e) {
     e.preventDefault()
@@ -23,20 +21,30 @@ export default function Login() {
     const event_sport = sportRef.current.value
     const event_paid = paidRef.current.value
     const event_creater_uid = currentUser.uid
+    const event_creater_email = currentUser.email
+    const event_location_name = "Portland"
+    const event_location_lat = 45.50
+    const event_location_long = -122.67
+    const event_date = "12/20/2020"
+
 
     const event = {
         name: event_name,
         type: event_type,
         sport: event_sport,
         paid: event_paid,
-        uid: event_creater_uid
+        uid: event_creater_uid,
+        email: event_creater_email,
+        location_name: event_location_name,
+        location_lat: event_location_lat,
+        location_long: event_location_long,
+        date: event_date
     };
 
     db.push(event);
 
     history.push("/")
   }
-
 
 
   return (

@@ -6,6 +6,8 @@ import { useAuth } from "../contexts/AuthContext"
 export default function Menu() {
   const { currentUser } = useAuth()
 
+  // console.log(currentUser);
+
   return (
       <Navbar bg="light" variant="light">
           <Navbar.Brand href="/">
@@ -18,7 +20,7 @@ export default function Menu() {
             />
           </Navbar.Brand>
         <Nav className="ml-auto">
-          <Nav.Link href="/events">Events</Nav.Link>
+          <Nav.Link href="/explore">Explore</Nav.Link>
           {currentUser && <Nav.Link href="/create">Create</Nav.Link>}
           {!currentUser && <Nav.Link href="/login">Login</Nav.Link>}
           {currentUser && <Nav.Link href="/dashboard">Dashboard</Nav.Link>}

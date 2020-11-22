@@ -10,11 +10,10 @@ export default function Home() {
     <Jumbotron>
     <Image src={logo} className="w-50"/>
     <p>
-        This is a simple hero unit, a simple jumbotron-style component for calling
-        extra attention to featured content or information.
+        Looking to get outside? Find pickup games or leagues in your area to get started. 
     </p>
     <p>
-        <Button variant="primary" href="/events">Find Events</Button>
+        <Button variant="primary" href="/events">Explore</Button>
     </p>
     </Jumbotron>
   )
