@@ -13,7 +13,7 @@ import Events from "./Events"
 import Home from "./Home"
 import Menu from "./Menu"
 import Create from "./Create"
-import GetEvents from "./GetEvents"
+import ShowEvents from "./ShowEvents"
 
 function App() {
   return (
@@ -29,7 +29,7 @@ function App() {
               <Route path="/login" component={Login} />
               <Route path="/forgot-password" component={ForgotPassword} />
               <Route path="/explore" component={Events} />
-              <Route path="/getevents" component={GetEvents} />
+              <Route path="/events" component={ShowEvents} />
               <Route path="/create" component={Create} />
               <Route path="/" component={Home} />
             </Switch>

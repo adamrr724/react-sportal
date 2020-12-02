@@ -2,18 +2,26 @@ import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
 import { Icon } from '@iconify/react'
 import googleMaps from '@iconify/icons-mdi/map-marker'
-import GetEvents from "./GetEvents"
+import Firebase from "firebase"
+import "../styles/css/styles.css"
 
-console.log(GetEvents())
-
-function Marker() {
+function Marker({name,type,sport}) {
     return(
-    <div className="pin">
-      <Icon icon={googleMaps} className="pin-icon" height="4em" color="#e57373" />
-      {/* <p className="pin-text">Hello</p> */}
+    <div>
+        <Icon icon={googleMaps} className="pin-icon" height="4em" color="#e57373" />
+      <div className="pin-card">
+        <p className="pin-text">Name: {name}</p>
+        <p className="pin-text">Event Type: {type}</p>
+        <p className="pin-text">Sport: {sport}</p>
+      </div>
     </div>
     )
   }
+
+function getEvents() {
+    return Firebase.database().ref("/events").once("value", snapshot => {
+    });
+} 
 
 
 class SimpleMap extends Component {
@@ -21,14 +29,21 @@ class SimpleMap extends Component {
         super(props);
         this.state = {
             markers: [],
+            events: [],
         }
       }
     
       componentDidMount(){
-
-        this.setState({
-          markers: [{lat: 45.5051, lng: -122.6750, id: 1 },{lat: 45.5352, lng: -122.6842, id: 2 },{lat: 45.5940, lng: -122.6955, id: 3}],
-        });
+        getEvents().then(value => value.val()).then( dbEvents =>  {
+            var markerArray = []
+            this.setState({ events: Object.values(dbEvents) });
+            this.state.events.map((event, index) => (
+                markerArray.push({lat: event.location_lat, lng: event.location_long, id: index, name: event.name, type: event.type, sport: event.sport})
+            ))
+            this.setState({
+                markers: markerArray
+              });
+          })  
       }
     
       render() {
@@ -45,6 +60,9 @@ class SimpleMap extends Component {
                       lat={marker.lat}
                       lng={marker.lng}
                       key={marker.id}
+                      name={marker.name}
+                      sport={marker.sport}
+                      type={marker.type}
                     />
     
                   )

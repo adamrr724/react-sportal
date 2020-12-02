@@ -1,0 +1,46 @@
+/* Event Map Styles */
+
+.pin-card {
+    background-color: white;
+    height: auto;
+    padding:10px;
+    position:fixed;
+    box-shadow: 2px 2px #808080;
+    border-radius: 5%;
+    display: none;
+    z-index: 1;
+}
+
+.pin-text {
+    position: relative;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: small;
+    font-weight: 400;
+  }
+
+.pin-icon {
+    pointer-events: all;
+    fill: grey;
+}
+
+.pin-icon:hover ~ .pin-card{
+    display: block;
+}
+
+
+/* Home Page Styles */
+
+.jumbotron {
+    background-image: url(../images/soccer.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    color: white;
+    text-align: center;
+}
+
+.home-logo {
+    height: 20em;
+    padding-top: 2em;
+    padding-bottom: 2em;
+    filter: drop-shadow(1px 2px 2px white);
+}
